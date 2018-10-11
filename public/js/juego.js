@@ -32,6 +32,7 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 		}
 
 		preguntasEscogidas.push(p);
+		//xd
 		$scope.preguntaActual = $scope.preguntas[0];
 		$scope.respuestas = [];
 		for (var i = 0; i < 4; i++) {
