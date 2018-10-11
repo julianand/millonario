@@ -32,8 +32,7 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 		}
 
 		preguntasEscogidas.push(p);
-		//xd
-		$scope.preguntaActual = $scope.preguntas[0];
+		$scope.preguntaActual = p;
 		$scope.respuestas = [];
 		for (var i = 0; i < 4; i++) {
 			rand = Math.round(Math.random()*3);
