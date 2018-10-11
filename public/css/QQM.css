@@ -71,7 +71,8 @@ body {
 }
 
 .comodines li#comd_llamada a {	
-	background-position: 0 0;	
+	background-position: 0 0;
+	/*mm*/
 }
 
 .comodines li#comd_publico a {
