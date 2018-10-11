@@ -23,7 +23,7 @@
 	                    <li id="comd_cincuenta"><a href="#"></a></li>    
 	                    <li id="comd_publico"><a href="#" ng-click="publico()"></a></li>    
 	                    <li id="comd_llamada"><a href="#" ng-click="llamada()"></a></li>
-	                    <li id="retirarse"><a href="#"></a></li>      
+	                    <li id="retirarse"><a href="#" ng-click="retirada()"></a></li>      
 	                </ul>
 	                
 	            </div><!-- /.comodines -->
@@ -148,6 +148,7 @@
 	    <h2>Respuesta Incorrecta</h2>
 	    <p>Contestaste incorrectamente!<br><br></p>    
 	    <p><strong>Puntaje total: <span class="total_answers">@{{puntaje}}</span></strong></p>
+	    <p><strong>Preguntas acertadas: <span class="total_answers">@{{preguntasAcertadas}}</span></strong></p>
 	    <a style="cursor: pointer;" class="close" ng-click="proximaPregunta()">Próxima pregunta</a>
 	</div>
 
@@ -156,6 +157,7 @@
 	    <h2>Respuesta Correcta</h2>
 	    <p>Contestaste correctamente!<br><br></p>    
 	    <p><strong>Puntaje total: <span class="total_answers">@{{puntaje}}</span></strong></p>
+	    <p><strong>Preguntas acertadas: <span class="total_answers">@{{preguntasAcertadas}}</span></strong></p>
 	    <a style="cursor: pointer;" class="close" ng-click="proximaPregunta()">Próxima pregunta</a>
 	</div>
 	
@@ -163,8 +165,8 @@
 	<div id="dialog_retirarse" class="window">
 	    <h2>Retirada</h2>
 	    <p>El jugador ha decidido retirarse del juego con el siguiente puntaje:</p>
-	    <p><strong>Preguntas acertadas: <span class="total_answers">@{{puntaje}}</span></strong></p>
-	    <a href="#"class="close">Cerrar ventana</a>
+	    <p><strong>Puntaje: <span class="total_answers">@{{puntaje}}</span></strong></p>
+	    <p><strong>Preguntas acertadas: <span class="total_answers">@{{preguntasAcertadas}}</span></strong></p>
 	</div>
 
 	<!-- Mask to cover the whole screen -->

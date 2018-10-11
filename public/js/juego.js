@@ -10,6 +10,7 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 	var premioActual = 1;
 
 	$scope.puntaje = 0;
+	$scope.preguntasAcertadas = 0;
 	$scope.preguntas = [];
 	$scope.reveal = false;
 
@@ -71,6 +72,7 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 			$('#mask').addClass('open');
 			if($('li.light')[0] == $('li.selected')[0]) {
 				$scope.puntaje += parseInt($('#premio li.up')[0].getAttribute('data-value'));
+				$scope.preguntasAcertadas++;
 				$('#dialog_correct').addClass('open');
 			}
 			else {
@@ -122,6 +124,14 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 		if($("#comd_publico a.used").length == 0) {
 			$("#comd_publico a").addClass('used');
 			$("#dialog_comd_publico").addClass('open');
+			$("#mask").addClass('open');
+		}
+	}
+
+	$scope.retirada = function() {
+		if($("#retirarse a.used").length == 0) {
+			$("#retirarse a").addClass('used');
+			$("#dialog_retirarse").addClass('open');
 			$("#mask").addClass('open');
 		}
 	}
