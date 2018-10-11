@@ -8,7 +8,7 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 	var tablaPremios = $('#premio li');
 	var preguntasEscogidas = [];
 	var premioActual = 1;
-
+	//xd
 	$scope.puntaje = 0;
 	$scope.preguntasAcertadas = 0;
 	$scope.preguntas = [];
