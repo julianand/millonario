@@ -34,14 +34,14 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 
 		preguntasEscogidas.push(p);
 		$scope.preguntaActual = p;
-		$scope.respuestas = [];
+		$scope.respuestasActuales = [];
 		for (var i = 0; i < 4; i++) {
 			rand = Math.round(Math.random()*3);
-			while($scope.respuestas.indexOf($scope.preguntaActual.respuestas[rand]) != -1) {
+			while($scope.respuestasActuales.indexOf($scope.preguntaActual.respuestas[rand]) != -1) {
 				rand = (rand+1)%4;
 			}
 
-			$scope.respuestas.push($scope.preguntaActual.respuestas[rand]);
+			$scope.respuestasActuales.push($scope.preguntaActual.respuestas[rand]);
 		}
 	}
 
@@ -59,10 +59,12 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 		});
 	}, 10);
 
-	$scope.seleccionarRespuesta = function(event) {
+	$scope.seleccionarRespuesta = function(respuesta, event) {
 		if(!$scope.reveal) {
 			$('#answers li').removeClass('selected');
 			event.path[2].classList.add('selected');
+			preguntasEscogidas[preguntasEscogidas.length-1].respuestaSeleccionada = respuesta;
+			console.log(preguntasEscogidas);
 		}
 	};
 

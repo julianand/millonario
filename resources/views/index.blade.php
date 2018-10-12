@@ -41,31 +41,31 @@
 	            
 	            <ul id="answers">
 	        
-	                <li ng-class="{light: (reveal && respuestas[0].respuesta_correcta)}">
-	                    <a ng-click="seleccionarRespuesta($event)" href="#">
+	                <li ng-class="{light: (reveal && respuestasActuales[0].respuesta_correcta)}">
+	                    <a ng-click="seleccionarRespuesta(respuestasActuales[0], $event)" href="#">
 	                    <span class="bullet">A:</span> 
-	                    <span id="A" class="answer-text">@{{respuestas[0].respuesta}}</span>
+	                    <span id="A" class="answer-text">@{{respuestasActuales[0].respuesta}}</span>
 	                    </a>
 	              </li>
 	                
-	                <li ng-class="{light: (reveal && respuestas[1].respuesta_correcta)}">
-	                    <a ng-click="seleccionarRespuesta($event)" href="#">
+	                <li ng-class="{light: (reveal && respuestasActuales[1].respuesta_correcta)}">
+	                    <a ng-click="seleccionarRespuesta(respuestasActuales[1], $event)" href="#">
 	                    <span class="bullet">B:</span> 
-	                    <span id="B" class="answer-text">@{{respuestas[1].respuesta}}</span>
+	                    <span id="B" class="answer-text">@{{respuestasActuales[1].respuesta}}</span>
 	                    </a>
 	              </li>
 	                
-	                <li ng-class="{light: (reveal && respuestas[2].respuesta_correcta)}">
-	                    <a ng-click="seleccionarRespuesta($event)" href="#">
+	                <li ng-class="{light: (reveal && respuestasActuales[2].respuesta_correcta)}">
+	                    <a ng-click="seleccionarRespuesta(respuestasActuales[2], $event)" href="#">
 	                    <span class="bullet">C:</span> 
-	                    <span id="C" class="answer-text">@{{respuestas[2].respuesta}}</span>
+	                    <span id="C" class="answer-text">@{{respuestasActuales[2].respuesta}}</span>
 	                    </a>
 	              </li>
 	                
-	                <li ng-class="{light: (reveal && respuestas[3].respuesta_correcta)}">
-	                    <a ng-click="seleccionarRespuesta($event)" href="#">
+	                <li ng-class="{light: (reveal && respuestasActuales[3].respuesta_correcta)}">
+	                    <a ng-click="seleccionarRespuesta(respuestasActuales[3], $event)" href="#">
 	                    <span class="bullet">D:</span> 
-	                    <span id="D" class="answer-text">@{{respuestas[3].respuesta}}</span>
+	                    <span id="D" class="answer-text">@{{respuestasActuales[3].respuesta}}</span>
 	                    </a>
 	                </li>   
 	            
