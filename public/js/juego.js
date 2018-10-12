@@ -3,7 +3,7 @@ function cerrar(e) {
 	e.path[1].classList.remove('open');
 	$('#mask').removeClass('open');
 }
-//pruebaaaaaaaaaaaaaaaaaaaaa
+
 app.controller('juegoController', ['$scope','$http', '$timeout', function($scope, $http, $timeout) {
 	var tablaPremios = $('#premio li');
 	var preguntasEscogidas = [];
