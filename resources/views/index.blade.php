@@ -20,7 +20,7 @@
 	            <div class="comodines">
 	                            
 	                <ul>
-	                    <li id="comd_cincuenta"><a href="#"></a></li>    
+	                    <li id="comd_cincuenta"><a href="#" ng-click="cincuenta()"></a></li>    
 	                    <li id="comd_publico"><a href="#" ng-click="publico()"></a></li>    
 	                    <li id="comd_llamada"><a href="#" ng-click="llamada()"></a></li>
 	                    <li id="retirarse"><a href="#" ng-click="retirada()"></a></li>      
@@ -102,8 +102,6 @@
 	        
 	        
 	    </div><!-- /#aside -->
-	    
-	    <a href="#" id="reset"></a>
 
 	</div><!-- /.game-wrapper -->
 
@@ -167,6 +165,27 @@
 	    <p>El jugador ha decidido retirarse del juego con el siguiente puntaje:</p>
 	    <p><strong>Puntaje: <span class="total_answers">@{{puntaje}}</span></strong></p>
 	    <p><strong>Preguntas acertadas: <span class="total_answers">@{{preguntasAcertadas}}</span></strong></p>
+	    <div ng-if="preguntasEscogidas.length > 1">
+	    	<p>PREGUNTAS: </p>
+		    <table>
+				<thead>
+					<th>Pregunta</th>
+					<th>Respuesta seleccionada</th>
+					<th>Respuesta correcta</th>
+				</thead>
+				<tbody ng-repeat="pregunta in preguntasEscogidas" ng-if="preguntaActual != pregunta">
+					<td style="text-align: center;">
+						@{{pregunta.pregunta}}
+					</td>
+					<td style="text-align: center;">
+						a
+					</td>
+					<td style="text-align: center;">
+						b
+					</td>
+				</tbody>
+			</table>
+	    </div>
 	</div>
 
 	<!-- Mask to cover the whole screen -->

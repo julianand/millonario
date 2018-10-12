@@ -64,7 +64,6 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 			$('#answers li').removeClass('selected');
 			event.path[2].classList.add('selected');
 			preguntasEscogidas[preguntasEscogidas.length-1].respuestaSeleccionada = respuesta;
-			console.log(preguntasEscogidas);
 		}
 	};
 
@@ -135,6 +134,21 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 			$("#retirarse a").addClass('used');
 			$("#dialog_retirarse").addClass('open');
 			$("#mask").addClass('open');
+			console.log(preguntasEscogidas)
+			$scope.preguntasEscogidas = preguntasEscogidas;
+		}
+	}
+
+	$scope.cincuenta = function() {
+		if($("#comd_cincuenta a.used").length == 0) {
+			$("#comd_cincuenta a").addClass('used');
+			for (var i = 0; i < 2; i++) {
+				var rand = Math.round(Math.random()*3);
+				while($scope.respuestasActuales[rand] == null || $scope.respuestasActuales[rand].respuesta_correcta) {
+					rand = (rand+1)%4;
+				}
+				$scope.respuestasActuales[rand] = null;
+			}
 		}
 	}
 }]);
