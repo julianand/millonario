@@ -4,6 +4,10 @@ function cerrar(e) {
 	$('#mask').removeClass('open');
 }
 
+app.controller('indexController', ['$scope', '$http', function($scope, $http) {
+	
+}]);
+
 app.controller('juegoController', ['$scope','$http', '$timeout', function($scope, $http, $timeout) {
 	var tablaPremios = $('#premio li');
 	var preguntasEscogidas = [];
@@ -51,11 +55,11 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 				$scope.preguntas.push(value.pregunta);
 			});
 
-			// if($scope.preguntas.length < 15) $('#dialog_error').addClass('open');
-			// else {
+			if($scope.preguntas.length < 15) $('#dialog_error').addClass('open');
+			else {
 				$('#dialog_inicio').addClass('open');
 				elegirPregunta();
-			// }
+			}
 		});
 	}, 10);
 
@@ -69,6 +73,10 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 
 	$scope.revelar = function() {
 		$scope.reveal = true;
+		angular.forEach($scope.preguntaActual.respuestas, function(value, key) {
+			if(value.respuesta_correcta)
+				preguntasEscogidas[preguntasEscogidas.length-1].respuestaCorrecta = value;
+		});
 		$timeout(function() {
 			$('#mask').addClass('open');
 			if($('li.light')[0] == $('li.selected')[0]) {
@@ -134,7 +142,6 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 			$("#retirarse a").addClass('used');
 			$("#dialog_retirarse").addClass('open');
 			$("#mask").addClass('open');
-			console.log(preguntasEscogidas)
 			$scope.preguntasEscogidas = preguntasEscogidas;
 		}
 	}

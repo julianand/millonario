@@ -12,11 +12,11 @@
 */
 
 Route::get('/', function() {
-	return 1;
+	return view('index');
 });
 
 Route::get('/{anio}/{grado}', function ($anio, $grado) {
-    return view('index', ['anio'=>$anio, 'grado'=>$grado]);
+    return view('juego.index', ['anio'=>$anio, 'grado'=>$grado]);
 });
 
 Route::controller('juego','juegoController');
