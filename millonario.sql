@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-10-2018 a las 16:11:52
+-- Tiempo de generación: 15-10-2018 a las 22:16:33
 -- Versión del servidor: 10.1.35-MariaDB
 -- Versión de PHP: 7.2.9
 
@@ -38,11 +38,14 @@ CREATE TABLE `anios` (
 --
 
 INSERT INTO `anios` (`id`, `anio`) VALUES
+(9, '2012'),
+(6, '2013'),
 (5, '2014'),
 (4, '2015'),
 (3, '2016'),
 (2, '2017'),
-(1, '2018');
+(1, '2018'),
+(8, '2019');
 
 -- --------------------------------------------------------
 
@@ -85,7 +88,9 @@ CREATE TABLE `preguntas` (
 INSERT INTO `preguntas` (`id`, `pregunta`) VALUES
 (1, 'Cuanto es 2+3*2?'),
 (2, 'El alba es...'),
-(3, 'Warning en español significa...');
+(3, 'Warning en español significa...'),
+(4, '¿Quien descubrió América?'),
+(17, '¿Cuantas notas tiene una escala cromatica?');
 
 -- --------------------------------------------------------
 
@@ -106,7 +111,9 @@ CREATE TABLE `relaciones_preguntas` (
 INSERT INTO `relaciones_preguntas` (`anio_id`, `grado_id`, `pregunta_id`) VALUES
 (1, 6, 1),
 (1, 6, 2),
-(1, 6, 3);
+(1, 6, 3),
+(1, 6, 4),
+(1, 6, 17);
 
 -- --------------------------------------------------------
 
@@ -137,7 +144,15 @@ INSERT INTO `respuestas` (`id`, `respuesta`, `respuesta_correcta`, `pregunta_id`
 (9, 'Exito', 0, 3),
 (10, 'Informacion', 0, 3),
 (11, 'Peligro', 0, 3),
-(12, 'Advertencia', 1, 3);
+(12, 'Advertencia', 1, 3),
+(13, 'Cristobal Colon', 1, 4),
+(14, 'Nicolas Makiavelo', 0, 4),
+(15, 'Benjamin Franklin', 0, 4),
+(16, 'Jhon Lennon', 0, 4),
+(65, '12', 1, 17),
+(66, '7', 0, 17),
+(67, '8', 0, 17),
+(68, '5', 0, 17);
 
 --
 -- Índices para tablas volcadas
@@ -186,7 +201,7 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `anios`
 --
 ALTER TABLE `anios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `grados`
@@ -198,13 +213,13 @@ ALTER TABLE `grados`
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- Restricciones para tablas volcadas

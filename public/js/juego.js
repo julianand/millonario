@@ -34,9 +34,11 @@ app.controller('adminController', function($scope, $http, $timeout) {
 	}
 
 	$scope.guardarPregunta = function() {
+		console.log($scope.preguntaInput);
 		$http.post($scope.raiz+'/admin/guardar-pregunta', $scope.preguntaInput).then(function(response) {
 			$scope.errors = null;
 			$scope.preguntas.push(response.data);
+			if($scope.anios.indexOf(response.data.anio) == -1) $scope.anios.push(response.data.anio);
 			$('#crearPreguntaModal').modal('hide');
 			swal('Exito', 'La pregunta ha sido creada con exito', 'success');
 		}, function(response) {

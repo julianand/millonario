@@ -71,15 +71,20 @@
 			<div class="modal-body">
 				<form>
 					<div class="form-group row">
-						<div class="col-sm-8">
+						<div class="col-sm-7">
 							<input type="text" ng-model="preguntaInput.pregunta" class="form-control" placeholder="Pregunta">
 							<label class="text-danger">@{{errors.pregunta[0]}}</label>
 						</div>
-						<div class="col-sm-2">
+						<div class="col-sm-3">
 							<select ng-model="preguntaInput.anio" class="form-control custom-select" 
 									ng-options="x.anio for x in anios track by x.id">
-								<option value="" hidden>Año</option>
+								<option value="">Seleccione el año</option>
 							</select>
+							<div class="mt-4" style="position: absolute; z-index: 1;" ng-if="!preguntaInput.anio">	
+								<label class="mb-1">O especifiquelo:</label>
+								<input type="text" ng-model="preguntaInput.anioNew" class="form-control">
+								<label class="text-danger text-nowrap">@{{errors.anioNew[0]}}</label>
+							</div>
 							<label class="text-danger">@{{errors.anio[0]}}</label>
 						</div>
 						<div class="col-sm-2">

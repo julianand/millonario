@@ -37,6 +37,11 @@ class AdminController extends Controller
     }
 
     public function postGuardarPregunta(PreguntaRequest $request) {
+        if (!$request->anio) {
+            $anio = Anio::create(['anio'=>$request->anioNew]);
+        }
+        else $anio = $request->anio;
+
         $p = Pregunta::create($request->all());
         $respuestas = $request->respuestas;
         foreach ($respuestas as $key => $value) {
@@ -47,7 +52,7 @@ class AdminController extends Controller
             Respuesta::create($value);
         }
 
-        $rp['anio_id'] = $request->anio['id'];
+        $rp['anio_id'] = $anio['id'];
         $rp['grado_id'] = $request->grado['id'];
         $rp['pregunta_id'] = $p->id;
         $rp = RelacionPregunta::create($rp);

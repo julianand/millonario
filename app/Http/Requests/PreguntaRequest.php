@@ -25,7 +25,8 @@ class PreguntaRequest extends Request
     {
         return [
             'pregunta'=>'required',
-            'anio'=>'required',
+            'anio'=>'required_without:anioNew',
+            'anioNew'=>'required_without:anio|numeric|unique:anios,anio',
             'grado'=>'required',
             'respuestas'=>'required|array|min:4'
         ];
@@ -36,7 +37,10 @@ class PreguntaRequest extends Request
             'respuestas.required'=>'Completa todos los campos',
             'respuestas.min'=>'Completa todos los campos',
             'pregunta.required'=>'Requerido',
-            'anio.required'=>'Requerido',
+            'anio.required_without'=>'Requerido',
+            'anioNew.required_without'=>' ',
+            'anioNew.numeric'=>'El año debe ser un numero',
+            'anioNew.unique'=>'El año ya esta registrado',
             'grado.required'=>'Requerido',
         ];
     }
