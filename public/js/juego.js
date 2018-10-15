@@ -4,8 +4,81 @@ function cerrar(e) {
 	$('#mask').removeClass('open');
 }
 
-app.controller('indexController', ['$scope', '$http', function($scope, $http) {
+app.controller('adminController', function($scope, $http, $timeout) {
+
+	$scope.filtro = new Object();
+	function getPreguntas() {
+		$http.get($scope.raiz+'/admin/preguntas').then(function(response) {
+			$scope.preguntas = response.data;
+		});
+	}
+
+	$timeout(function() {
+		$http.get($scope.raiz+'/admin/datos-fecha').then(function(response) {
+			$scope.anios = response.data.anios;
+			$scope.grados = response.data.grados;
+		});
+
+		getPreguntas();
+	}, 10);
+
+	$scope.filtrar = function() {
+		if($scope.filtro.anio == null) $scope.filtro.anio = undefined;
+		if($scope.filtro.grado == null) $scope.filtro.grado = undefined;
+	}
+
+	$scope.abrirCrearPreguntaModal = function() {
+		$scope.preguntaInput = new Object();
+		$scope.preguntaInput.respuestas = [];
+		$('#crearPreguntaModal').modal('show');
+	}
+
+	$scope.guardarPregunta = function() {
+		$http.post($scope.raiz+'/admin/guardar-pregunta', $scope.preguntaInput).then(function(response) {
+			$scope.errors = null;
+			$scope.preguntas.push(response.data);
+			$('#crearPreguntaModal').modal('hide');
+			swal('Exito', 'La pregunta ha sido creada con exito', 'success');
+		}, function(response) {
+			$scope.errors = response.data;
+		});
+	}
+
+	$scope.eliminarPregunta = function(pregunta) {
+		swal({
+			title: 'Advertencia',
+			text: '¿Seguro que deseas eliminar esta pregunta?',
+			icon: 'warning',
+			buttons: true,
+			dangerMode: true
+		}).then((value) => {
+			if(value) {
+				$http.delete($scope.raiz+'/admin/eliminar-pregunta/'+pregunta.pregunta.id).then(function(response) {
+					swal(response.data);
+					var i = $scope.preguntas.indexOf(pregunta);
+					$scope.preguntas.splice(i,1);
+				});
+			}
+		});
+	}
+});
+
+app.controller('indexController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 	
+	$timeout(function() {
+		$http.get($scope.raiz+'/juego/datos-juego').then(function(response) {
+			$scope.anios = response.data.anios;
+			$scope.grados = response.data.grados;
+		});
+	}, 10);
+
+	$scope.juego = function() {
+		$http.post($scope.raiz+'/juego/validar-datos', $scope.input).then(function(response) {
+			window.location.replace($scope.raiz+response.data);
+		}, function(response) {
+			$scope.errors = response.data;
+		});
+	}
 }]);
 
 app.controller('juegoController', ['$scope','$http', '$timeout', function($scope, $http, $timeout) {

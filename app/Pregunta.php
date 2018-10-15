@@ -8,9 +8,9 @@ class Pregunta extends Model
 {
     public $timestamps = false;
     protected $table = 'preguntas';
-    protected $fillable = ['pregunta','grado_pregunta'];
+    protected $fillable = ['pregunta'];
 
     public function respuestas() {
-    	return $this->hasMany('App\Respuesta');
+    	return $this->hasMany('App\Respuesta')->orderBy('respuesta_correcta', 'desc');
     }
 }

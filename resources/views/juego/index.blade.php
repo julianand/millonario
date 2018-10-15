@@ -120,6 +120,7 @@
 	    <h2>Error</h2>    
 	    <p>No hay suficientes preguntas.</p>
 	    <p>Hay @{{preguntas.length}} y se necesitan al menos 15.</p>
+	    <a href="@{{raiz}}" class="close" onclick="cerrar(event)">Ir al inicio</a>
 	</div>
 	
 	<!-- Inicio -->

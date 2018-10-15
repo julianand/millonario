@@ -15,8 +15,9 @@ Route::get('/', function() {
 	return view('index');
 });
 
+Route::controller('juego','JuegoController');
+route::controller('admin','AdminController');
+
 Route::get('/{anio}/{grado}', function ($anio, $grado) {
     return view('juego.index', ['anio'=>$anio, 'grado'=>$grado]);
 });
-
-Route::controller('juego','juegoController');

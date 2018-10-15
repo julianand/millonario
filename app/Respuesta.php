@@ -8,7 +8,7 @@ class Respuesta extends Model
 {
     public $timestamps = false;
     protected $table = 'respuestas';
-    protected $fillable = ['respuesta', 'respuesta_correcta'];
+    protected $fillable = ['respuesta', 'respuesta_correcta', 'pregunta_id'];
     protected $casts = [
     	'respuesta_correcta'=>'integer'
     ];
