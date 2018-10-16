@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.6.5.2
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 15-10-2018 a las 22:16:33
--- Versión del servidor: 10.1.35-MariaDB
--- Versión de PHP: 7.2.9
+-- Tiempo de generación: 16-10-2018 a las 18:19:24
+-- Versión del servidor: 10.1.21-MariaDB
+-- Versión de PHP: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -38,6 +36,7 @@ CREATE TABLE `anios` (
 --
 
 INSERT INTO `anios` (`id`, `anio`) VALUES
+(10, '2011'),
 (9, '2012'),
 (6, '2013'),
 (5, '2014'),
@@ -55,7 +54,7 @@ INSERT INTO `anios` (`id`, `anio`) VALUES
 
 CREATE TABLE `grados` (
   `id` int(11) NOT NULL,
-  `grado` varchar(100) NOT NULL
+  `grado` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -63,12 +62,12 @@ CREATE TABLE `grados` (
 --
 
 INSERT INTO `grados` (`id`, `grado`) VALUES
-(5, '10'),
-(6, '11'),
-(1, '6'),
-(2, '7'),
-(3, '8'),
-(4, '9');
+(1, 6),
+(2, 7),
+(3, 8),
+(4, 9),
+(5, 10),
+(6, 11);
 
 -- --------------------------------------------------------
 
@@ -86,11 +85,14 @@ CREATE TABLE `preguntas` (
 --
 
 INSERT INTO `preguntas` (`id`, `pregunta`) VALUES
-(1, 'Cuanto es 2+3*2?'),
+(1, '¿Cuanto es 2+3*2?'),
 (2, 'El alba es...'),
 (3, 'Warning en español significa...'),
 (4, '¿Quien descubrió América?'),
-(17, '¿Cuantas notas tiene una escala cromatica?');
+(17, '¿Cuantas notas tiene una escala cromatica?'),
+(18, 'La niña, la pinta y la...'),
+(19, 'El simbolo quimico \"Na\" representa...'),
+(22, 'Bon Scott fue vocalista de la banda...');
 
 -- --------------------------------------------------------
 
@@ -113,7 +115,10 @@ INSERT INTO `relaciones_preguntas` (`anio_id`, `grado_id`, `pregunta_id`) VALUES
 (1, 6, 2),
 (1, 6, 3),
 (1, 6, 4),
-(1, 6, 17);
+(1, 6, 17),
+(1, 6, 18),
+(1, 6, 19),
+(1, 6, 22);
 
 -- --------------------------------------------------------
 
@@ -152,7 +157,19 @@ INSERT INTO `respuestas` (`id`, `respuesta`, `respuesta_correcta`, `pregunta_id`
 (65, '12', 1, 17),
 (66, '7', 0, 17),
 (67, '8', 0, 17),
-(68, '5', 0, 17);
+(68, '5', 0, 17),
+(69, 'Santa Maria', 1, 18),
+(70, 'Santa Mariana', 0, 18),
+(71, 'Santa Cacucha', 0, 18),
+(72, 'Santa Barbara', 0, 18),
+(73, 'Sodio', 1, 19),
+(74, 'Hidrogeno', 0, 19),
+(75, 'Agua', 0, 19),
+(76, 'Yodo', 0, 19),
+(85, 'AC/DC', 1, 22),
+(86, 'Led Zeppelin', 0, 22),
+(87, 'Nirvana', 0, 22),
+(88, 'Aerosmith', 0, 22);
 
 --
 -- Índices para tablas volcadas
@@ -201,26 +218,22 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `anios`
 --
 ALTER TABLE `anios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `grados`
 --
 ALTER TABLE `grados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 --
 -- Restricciones para tablas volcadas
 --
@@ -238,7 +251,6 @@ ALTER TABLE `relaciones_preguntas`
 --
 ALTER TABLE `respuestas`
   ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`pregunta_id`) REFERENCES `preguntas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

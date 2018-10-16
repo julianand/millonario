@@ -37,10 +37,10 @@ app.controller('adminController', function($scope, $http, $timeout) {
 		console.log($scope.preguntaInput);
 		$http.post($scope.raiz+'/admin/guardar-pregunta', $scope.preguntaInput).then(function(response) {
 			$scope.errors = null;
-			$scope.preguntas.push(response.data);
-			if($scope.anios.indexOf(response.data.anio) == -1) $scope.anios.push(response.data.anio);
 			$('#crearPreguntaModal').modal('hide');
-			swal('Exito', 'La pregunta ha sido creada con exito', 'success');
+			swal(response.data).then((value) => {
+				window.location.href = $scope.raiz+'/admin';
+			});
 		}, function(response) {
 			$scope.errors = response.data;
 		});
@@ -56,12 +56,19 @@ app.controller('adminController', function($scope, $http, $timeout) {
 		}).then((value) => {
 			if(value) {
 				$http.delete($scope.raiz+'/admin/eliminar-pregunta/'+pregunta.pregunta.id).then(function(response) {
-					swal(response.data);
-					var i = $scope.preguntas.indexOf(pregunta);
-					$scope.preguntas.splice(i,1);
+					swal(response.data).then((value) => {
+						window.location.href = $scope.raiz+'/admin';
+					});
 				});
 			}
 		});
+	}
+
+	$scope.editarPregunta = function(pregunta) {
+		$scope.preguntaInput = pregunta.pregunta;
+		$scope.preguntaInput.anio = pregunta.anio;
+		$scope.preguntaInput.grado = pregunta.grado;
+		$('#crearPreguntaModal').modal('show');
 	}
 });
 
@@ -76,7 +83,7 @@ app.controller('indexController', ['$scope', '$http', '$timeout', function($scop
 
 	$scope.juego = function() {
 		$http.post($scope.raiz+'/juego/validar-datos', $scope.input).then(function(response) {
-			window.location.replace($scope.raiz+response.data);
+			window.location.href = $scope.raiz+response.data;
 		}, function(response) {
 			$scope.errors = response.data;
 		});

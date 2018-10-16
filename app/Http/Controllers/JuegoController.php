@@ -15,8 +15,8 @@ use App\Grado;
 class JuegoController extends Controller
 {
 	public function getDatosJuego() {
-		$res['anios'] = Anio::all();
-		$res['grados'] = Grado::all();
+		$res['anios'] = Anio::orderBy('anio', 'desc')->get();
+		$res['grados'] = Grado::orderBy('grado', 'desc')->get();
 
 		return $res;
 	}

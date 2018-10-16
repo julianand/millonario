@@ -49,7 +49,7 @@
 					@{{respuesta.respuesta}}
 				</td>
 				<td>
-					<button class="btn btn-light">Editar</button>
+					<button class="btn btn-light" ng-click="editarPregunta(pregunta)">Editar</button>
 					<button class="btn btn-link text-danger" ng-click="eliminarPregunta(pregunta)">Eliminar</button>
 				</td>
 			</tbody>
@@ -77,7 +77,8 @@
 						</div>
 						<div class="col-sm-3">
 							<select ng-model="preguntaInput.anio" class="form-control custom-select" 
-									ng-options="x.anio for x in anios track by x.id">
+									ng-options="x.anio for x in anios track by x.id"
+									ng-change="preguntaInput.anioNew=''">
 								<option value="">Seleccione el año</option>
 							</select>
 							<div class="mt-4" style="position: absolute; z-index: 1;" ng-if="!preguntaInput.anio">	
