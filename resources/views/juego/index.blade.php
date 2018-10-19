@@ -143,13 +143,31 @@
 	    <p>Pida a los participantes que levanten la mano votando una de las cuatro posibles respuestas a la pregunta.</p>
 	    <a href="#"class="close" onclick="cerrar(event)">Cerrar ventana</a>
 	</div>
-	
 	<!-- Ganador -->
-	<div id="dialog_winner" class="window">
-	    <h2>Felicidades</h2>
-	    <p>El jugador ha contestado correctamente todas las <strong>15</strong> pregutnas y ha obtenido los <strong>300.000.000</strong> pesos, ha ganado el juego:<br><br>
-	    </p>    
-	    <a href="#"class="close">Cerrar ventana</a>
+	<div id="dialog_winner" class="window" style="overflow: auto;">
+	    <h2>Juego terminado</h2>
+	    <p>El jugador ha obtenido <strong>@{{puntaje}}</strong> puntos.<br><br>
+	    </p>
+	    <table>
+			<thead>
+				<th>Pregunta</th>
+				<th>Respuesta seleccionada</th>
+				<th>Respuesta correcta</th>
+			</thead>
+			<tbody  ng-class="{red: !pregunta.respuestaSeleccionada.respuesta_correcta, green: pregunta.respuestaSeleccionada.respuesta_correcta}" 
+					ng-repeat="pregunta in preguntasEscogidas">
+				<td style="text-align: center;">
+					@{{pregunta.pregunta}}
+				</td>
+				<td style="text-align: center;">
+					@{{pregunta.respuestaSeleccionada.respuesta}}
+				</td>
+				<td style="text-align: center;">
+					@{{pregunta.respuestaCorrecta.respuesta}}
+				</td>
+			</tbody>
+		</table>
+	    <a href="window.location.href = '{{Request::url()}}'"class="close" style="position: absolute; top: 59px; left: 465px;">Nuevo juego</a>
 	</div>
 	
 	<!-- Incorrecta -->
@@ -171,7 +189,7 @@
 	</div>
 	
 	<!-- Retirada -->
-	<div id="dialog_retirarse" class="window">
+	<div id="dialog_retirarse" class="window" style="overflow: auto;">
 	    <h2>Retirada</h2>
 	    <p>El jugador ha decidido retirarse del juego con el siguiente puntaje:</p>
 	    <p><strong>Puntaje: <span class="total_answers">@{{puntaje}}</span></strong></p>
@@ -198,6 +216,7 @@
 				</tbody>
 			</table>
 	    </div>
+	    <a href="window.location.href = '{{Request::url()}}'" class="close">Nuevo juego</a>
 	</div>
 
 	<!-- Mask to cover the whole screen -->

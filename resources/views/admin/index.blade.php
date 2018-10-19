@@ -2,7 +2,6 @@
 @section('title', 'Modulo Administrador - QQSM')
 @section('controller', 'ng-controller="adminController"')
 @section('content')
-
 <div class="container-fluid bg-light p-3">
 	<h2 class="ml-3">MODULO ADMINISTRADOR - QUIEN QUIERE SER MILLONARIO</h2>
 </div>

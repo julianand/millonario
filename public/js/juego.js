@@ -159,16 +159,23 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 			if(value.respuesta_correcta)
 				preguntasEscogidas[preguntasEscogidas.length-1].respuestaCorrecta = value;
 		});
+
 		$timeout(function() {
 			$('#mask').addClass('open');
-			if($('li.light')[0] == $('li.selected')[0]) {
-				$scope.puntaje += parseInt($('#premio li.up')[0].getAttribute('data-value'));
-				$scope.preguntasAcertadas++;
-				$('#dialog_correct').addClass('open');
+			if(premioActual < 15) {
+				if($('li.light')[0] == $('li.selected')[0]) {
+					$scope.puntaje += parseInt($('#premio li.up')[0].getAttribute('data-value'));
+					$scope.preguntasAcertadas++;
+					$('#dialog_correct').addClass('open');
+				}
+				else {
+					$('#dialog_loose').addClass('open');
+				}
 			}
 			else {
-				$('#dialog_loose').addClass('open');
-			}
+				$('#dialog_winner').addClass('open');
+				$scope.preguntasEscogidas = preguntasEscogidas;
+			}	
 		}, 500);
 	}
 
