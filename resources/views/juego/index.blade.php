@@ -133,20 +133,21 @@
 
 	<!-- Llamada -->
 	<div id="dialog_comd_llamada" class="window">
-	    <h2>Comodín Bíblico</h2>    
-	    <p>Dispone de <strong>@{{segundos}}</strong> segundos para buscar en Internet.</p>
+	    <h2>Comodín Bíblico</h2>
+	    <p style="color: orange;"><strong>Pregunta: </strong>@{{preguntaActual.pregunta}}</p>
+	    <p>@{{nombre}}, tienes <strong>@{{segundos}}</strong> segundos para buscar en Internet.</p>
 	</div>
 	
 	<!-- Publico -->
 	<div id="dialog_comd_publico" class="window">
 	    <h2>Comodín del Público</h2>
-	    <p>Pida a los participantes que levanten la mano votando una de las cuatro posibles respuestas a la pregunta.</p>
+	    <p>@{{nombre}}, pide a los participantes que levanten la mano votando una de las cuatro posibles respuestas a la pregunta.</p>
 	    <a href="#"class="close" onclick="cerrar(event)">Cerrar ventana</a>
 	</div>
 	<!-- Ganador -->
 	<div id="dialog_winner" class="window" style="overflow: auto;">
 	    <h2>Juego terminado</h2>
-	    <p>El jugador ha obtenido <strong>@{{puntaje}}</strong> puntos.<br><br>
+	    <p>@{{nombre}} ha obtenido <strong>@{{puntaje}}</strong> puntos.<br><br>
 	    </p>
 	    <table>
 			<thead>
@@ -167,7 +168,7 @@
 				</td>
 			</tbody>
 		</table>
-	    <a href="window.location.href = '{{Request::url()}}'"class="close" style="position: absolute; top: 59px; left: 465px;">Nuevo juego</a>
+	    <a href="{{Request::url()}}"class="close" style="position: absolute; top: 59px; left: 465px;">Nuevo juego</a>
 	</div>
 	
 	<!-- Incorrecta -->
@@ -191,7 +192,7 @@
 	<!-- Retirada -->
 	<div id="dialog_retirarse" class="window" style="overflow: auto;">
 	    <h2>Retirada</h2>
-	    <p>El jugador ha decidido retirarse del juego con el siguiente puntaje:</p>
+	    <p>@{{nombre}} ha decidido retirarse del juego con el siguiente puntaje:</p>
 	    <p><strong>Puntaje: <span class="total_answers">@{{puntaje}}</span></strong></p>
 	    <p><strong>Preguntas acertadas: <span class="total_answers">@{{preguntasAcertadas}}</span></strong></p>
 	    <div ng-if="preguntasEscogidas.length > 1">
@@ -216,7 +217,7 @@
 				</tbody>
 			</table>
 	    </div>
-	    <a href="window.location.href = '{{Request::url()}}'" class="close">Nuevo juego</a>
+	    <a href="{{Request::url()}}" class="close">Nuevo juego</a>
 	</div>
 
 	<!-- Mask to cover the whole screen -->
