@@ -26,7 +26,7 @@ class PreguntaRequest extends Request
         return [
             'pregunta'=>'required',
             'anio'=>'required_without:anioNew',
-            'anioNew'=>'required_without:anio|numeric|unique:anios,anio',
+            'anioNew'=>'required_without:anio|numeric|unique:anios,anio|min:2000',
             'grado'=>'required',
             'respuestas'=>'required|array|min:4'
         ];
@@ -41,6 +41,7 @@ class PreguntaRequest extends Request
             'anioNew.required_without'=>' ',
             'anioNew.numeric'=>'El año debe ser un numero',
             'anioNew.unique'=>'El año ya esta registrado',
+            'anioNew.new'=>'El año debe ser mayor o igual a 2000',
             'grado.required'=>'Requerido',
         ];
     }

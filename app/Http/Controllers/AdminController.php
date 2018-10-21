@@ -62,11 +62,6 @@ class AdminController extends Controller
             $rp['grado_id'] = $request->grado['id'];
             $rp['pregunta_id'] = $p->id;
             RelacionPregunta::create($rp);
-            $rp = RelacionPregunta::where('pregunta_id', $p->id)
-                                    ->with('pregunta.respuestas')
-                                    ->with('anio')
-                                    ->with('grado')
-                                    ->first();
 
             $alert = ['title'=>'Exito',
                       'text'=>'La pregunta ha sido actualizada con exito',
@@ -93,12 +88,7 @@ class AdminController extends Controller
             $rp['anio_id'] = $anio['id'];
             $rp['grado_id'] = $request->grado['id'];
             $rp['pregunta_id'] = $p->id;
-            $rp = RelacionPregunta::create($rp)
-                                ->with('pregunta.respuestas')
-                                ->with('anio')
-                                ->with('grado')
-                                ->where('pregunta_id', $p->id)
-                                ->first();
+            RelacionPregunta::create($rp);
 
             $alert = ['title'=>'Exito','text'=>'La pregunta ha sido creada con exito','icon'=>'success'];
 

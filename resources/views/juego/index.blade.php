@@ -103,7 +103,7 @@
 	            <li data-value="3000000">3.000.000</li>
 	            <li data-value="2000000">2.000.000</li>
 	            <li data-value="1000000"><em>1.000.000</em></li>
-	            <li data-value="5000000">500.000</li>
+	            <li data-value="500000">500.000</li>
 	            <li data-value="300000">300.000</li>
 	            <li data-value="200000">200.000</li>
 	            <li data-value="100000">100.000</li>
