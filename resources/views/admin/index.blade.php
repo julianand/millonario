@@ -71,8 +71,19 @@
 				<form>
 					<div class="form-group row">
 						<div class="col-sm-7">
-							<input type="text" ng-model="preguntaInput.pregunta" class="form-control" placeholder="Pregunta">
+							<input id="pre" type="text" ng-model="preguntaInput.pregunta" class="form-control"
+									placeholder="Pregunta">
 							<label class="text-danger">@{{errors.pregunta[0]}}</label>
+							<input id="archivo" type="file"  hidden
+									onchange="angular.element(this).scope().mostrarArchivo()">
+							<div class="row">
+								<div class="col-sm-6">
+									<a href="" role="button" class="btn btn-link text-left" ng-click="elegirArchivo()">
+										<small>O elige una imagen</small>
+									</a>
+								</div>
+								<div id="archivoName" class="col-sm-6 align-self-center text-muted"></div>
+							</div>
 						</div>
 						<div class="col-sm-3">
 							<select ng-model="preguntaInput.anio" class="form-control custom-select" 

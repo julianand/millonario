@@ -29,6 +29,7 @@ app.controller('adminController', function($scope, $http, $timeout) {
 
 	$scope.abrirCrearPreguntaModal = function() {
 		$scope.preguntaInput = new Object();
+		$scope.preguntaInput.preguntaDisabled = false;
 		$scope.preguntaInput.respuestas = [];
 		$('#crearPreguntaModal').modal('show');
 	}
@@ -69,6 +70,17 @@ app.controller('adminController', function($scope, $http, $timeout) {
 		$scope.preguntaInput.anio = pregunta.anio;
 		$scope.preguntaInput.grado = pregunta.grado;
 		$('#crearPreguntaModal').modal('show');
+	}
+
+	$scope.elegirArchivo = function() {
+		$("#archivo").click();
+	}
+
+	$scope.mostrarArchivo = function() {
+		$scope.preguntaInput.preguntaDisabled = true;
+		$scope.preguntaInput.file_pregunta = $("#archivo")[0].files[0];
+		$("#pre").attr('placeholder', 'Comentario de pregunta');
+		$("#archivoName").text($("#archivo")[0].files[0].name);
 	}
 });
 
