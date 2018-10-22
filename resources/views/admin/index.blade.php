@@ -76,9 +76,9 @@
 							<label class="text-danger">@{{errors.pregunta[0]}}</label>
 							<input id="archivo" type="file" hidden
 									onchange="angular.element(this).scope().mostrarArchivo()">
-							<div class="row">
+							<div class="row" style="margin-top: -16px;">
 								<div class="col-sm-4">
-									<button href="" class="btn btn-link text-left" ng-click="elegirArchivo()"
+									<button class="btn btn-link text-left" ng-click="elegirArchivo()"
 											ng-disabled="preguntaInput.file_pregunta">
 										<small>O elige una imagen</small>
 									</button>
@@ -96,9 +96,10 @@
 						</div>
 						<div class="col-sm-3">
 							<select ng-model="preguntaInput.anio" class="form-control custom-select" 
-									ng-options="x.anio for x in anios track by x.id"
+									{{-- ng-options="x.anio for x in anios track by x.id" --}}
 									ng-change="preguntaInput.anioNew=''">
 								<option value="">Seleccione el año</option>
+								<option ng-repeat="anio in anios" value="@{{anio.id}}">@{{anio.anio}}</option>
 							</select>
 							<div class="mt-4" style="position: absolute; z-index: 1;" ng-if="!preguntaInput.anio">	
 								<label class="mb-1">O especifiquelo:</label>
@@ -109,8 +110,10 @@
 						</div>
 						<div class="col-sm-2">
 							<select ng-model="preguntaInput.grado" class="form-control custom-select" 
-									ng-options="x.grado for x in grados track by x.id">
+									{{-- ng-options="x.grado for x in grados track by x.id" --}}
+									>
 								<option value="" hidden>Grado</option>
+								<option ng-repeat="grado in grados" value="@{{grado.id}}">@{{grado.grado}}</option>
 							</select>
 							<label class="text-danger">@{{errors.grado[0]}}</label>
 						</div>

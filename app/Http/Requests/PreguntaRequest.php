@@ -24,11 +24,11 @@ class PreguntaRequest extends Request
     public function rules()
     {
         return [
-            'pregunta'=>'required',
+            'pregunta'=>'required_without:file_pregunta',
             'anio'=>'required_without:anioNew',
             'anioNew'=>'required_without:anio|numeric|unique:anios,anio|min:2000',
             'grado'=>'required',
-            'respuestas'=>'required|array|min:4'
+            'respuestas'=>'required|min:4'
         ];
     }
 
@@ -36,7 +36,7 @@ class PreguntaRequest extends Request
         return [
             'respuestas.required'=>'Completa todos los campos',
             'respuestas.min'=>'Completa todos los campos',
-            'pregunta.required'=>'Requerido',
+            'pregunta.required_without'=>'Requerido',
             'anio.required_without'=>'Requerido',
             'anioNew.required_without'=>' ',
             'anioNew.numeric'=>'El año debe ser un numero',

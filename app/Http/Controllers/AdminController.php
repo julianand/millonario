@@ -36,7 +36,17 @@ class AdminController extends Controller
         return $rp;
     }
 
+    public function postGuardarPregunt(Request $request) {
+        foreach ($request->all() as $key => $value) {
+            if($key != 'file_pregunta') $res[$key] = json_decode($value);
+            else $res[$key] = $value;
+        }
+        return $request->all();
+    }
+
     public function postGuardarPregunta(PreguntaRequest $request) {
+        return $request->all();
+        // return $request->file('file_pregunta')->getClientOriginalName();
         if($request->id) {
             if (!$request->anio) {
                 $anio = Anio::create(['anio'=>$request->anioNew]);

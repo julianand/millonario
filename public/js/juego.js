@@ -4,6 +4,13 @@ function cerrar(e) {
 	$('#mask').removeClass('open');
 }
 
+// function toFormData(data) {
+// 	var formData = new FormData();
+// 	formData.append('asd', 'aaa');
+
+// 	console.log(formData);
+// }
+
 app.controller('adminController', ['$scope', '$http', '$timeout',  function($scope, $http, $timeout) {
 
 	$scope.filtro = new Object();
@@ -35,15 +42,26 @@ app.controller('adminController', ['$scope', '$http', '$timeout',  function($sco
 
 	$scope.guardarPregunta = function() {
 		console.log($scope.preguntaInput);
-		// $http.post($scope.raiz+'/admin/guardar-pregunta', $scope.preguntaInput).then(function(response) {
-		// 	$scope.errors = null;
-		// 	$('#crearPreguntaModal').modal('hide');
-		// 	swal(response.data).then((value) => {
-		// 		window.location.href = $scope.raiz+'/admin';
-		// 	});
-		// }, function(response) {
-		// 	$scope.errors = response.data;
-		// });
+		var data = new FormData();
+		angular.forEach($scope.preguntaInput, function(value, key) {
+			if(value) {
+				data.append(key, value);
+			}
+		});
+		var config = {
+			headers: {
+				'Content-Type': undefined
+			}
+		};
+		$http.post($scope.raiz+'/admin/guardar-pregunt', data, config).then(function(response) {
+			$scope.errors = null;
+			$('#crearPreguntaModal').modal('hide');
+			swal(response.data).then((value) => {
+				window.location.href = $scope.raiz+'/admin';
+			});
+		}, function(response) {
+			$scope.errors = response.data;
+		});
 	}
 
 	$scope.eliminarPregunta = function(pregunta) {
@@ -84,7 +102,6 @@ app.controller('adminController', ['$scope', '$http', '$timeout',  function($sco
 				$("#pre").attr('placeholder', 'Comentario de pregunta');
 			}
 		}, 20);
-		console.log($scope.preguntaInput);
 	}
 
 	//event click
