@@ -74,15 +74,24 @@
 							<input id="pre" type="text" ng-model="preguntaInput.pregunta" class="form-control"
 									placeholder="Pregunta">
 							<label class="text-danger">@{{errors.pregunta[0]}}</label>
-							<input id="archivo" type="file"  hidden
+							<input id="archivo" type="file" hidden
 									onchange="angular.element(this).scope().mostrarArchivo()">
 							<div class="row">
-								<div class="col-sm-6">
-									<a href="" role="button" class="btn btn-link text-left" ng-click="elegirArchivo()">
+								<div class="col-sm-4">
+									<button href="" class="btn btn-link text-left" ng-click="elegirArchivo()"
+											ng-disabled="preguntaInput.file_pregunta">
 										<small>O elige una imagen</small>
-									</a>
+									</button>
 								</div>
-								<div id="archivoName" class="col-sm-6 align-self-center text-muted"></div>
+								<div class="col-sm-4 align-self-center text-muted">
+									@{{preguntaInput.file_pregunta.name}}
+								</div>
+								<div class="col-sm-4">
+									<button ng-if="preguntaInput.file_pregunta" ng-click="cancelarArchivo()"
+											type="button" class="btn btn-link text-danger">
+										<small>Cancelar</small>
+									</button>
+								</div>
 							</div>
 						</div>
 						<div class="col-sm-3">

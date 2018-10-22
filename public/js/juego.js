@@ -4,7 +4,7 @@ function cerrar(e) {
 	$('#mask').removeClass('open');
 }
 
-app.controller('adminController', function($scope, $http, $timeout) {
+app.controller('adminController', ['$scope', '$http', '$timeout',  function($scope, $http, $timeout) {
 
 	$scope.filtro = new Object();
 	function getPreguntas() {
@@ -29,22 +29,21 @@ app.controller('adminController', function($scope, $http, $timeout) {
 
 	$scope.abrirCrearPreguntaModal = function() {
 		$scope.preguntaInput = new Object();
-		$scope.preguntaInput.preguntaDisabled = false;
 		$scope.preguntaInput.respuestas = [];
 		$('#crearPreguntaModal').modal('show');
 	}
 
 	$scope.guardarPregunta = function() {
 		console.log($scope.preguntaInput);
-		$http.post($scope.raiz+'/admin/guardar-pregunta', $scope.preguntaInput).then(function(response) {
-			$scope.errors = null;
-			$('#crearPreguntaModal').modal('hide');
-			swal(response.data).then((value) => {
-				window.location.href = $scope.raiz+'/admin';
-			});
-		}, function(response) {
-			$scope.errors = response.data;
-		});
+		// $http.post($scope.raiz+'/admin/guardar-pregunta', $scope.preguntaInput).then(function(response) {
+		// 	$scope.errors = null;
+		// 	$('#crearPreguntaModal').modal('hide');
+		// 	swal(response.data).then((value) => {
+		// 		window.location.href = $scope.raiz+'/admin';
+		// 	});
+		// }, function(response) {
+		// 	$scope.errors = response.data;
+		// });
 	}
 
 	$scope.eliminarPregunta = function(pregunta) {
@@ -76,13 +75,26 @@ app.controller('adminController', function($scope, $http, $timeout) {
 		$("#archivo").click();
 	}
 
+	//event change
 	$scope.mostrarArchivo = function() {
-		$scope.preguntaInput.preguntaDisabled = true;
-		$scope.preguntaInput.file_pregunta = $("#archivo")[0].files[0];
-		$("#pre").attr('placeholder', 'Comentario de pregunta');
-		$("#archivoName").text($("#archivo")[0].files[0].name);
+		$timeout(function() {
+			var archivo = $("#archivo")[0].files[0];
+			if(archivo) {
+				$scope.preguntaInput.file_pregunta = archivo;
+				$("#pre").attr('placeholder', 'Comentario de pregunta');
+			}
+		}, 20);
+		console.log($scope.preguntaInput);
 	}
-});
+
+	//event click
+	$scope.cancelarArchivo = function() {
+		$timeout(function() {
+			$("#pre").attr('placeholder', 'Pregunta');
+			$scope.preguntaInput.file_pregunta = null;
+		}, 10);
+	}
+}]);
 
 app.controller('indexController', ['$scope', '$http', '$timeout', function($scope, $http, $timeout) {
 	
