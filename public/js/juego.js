@@ -89,6 +89,7 @@ app.controller('adminController', ['$scope', '$http', '$timeout',  function($sco
 
 	$scope.editarPregunta = function(pregunta) {
 		$scope.preguntaInput = pregunta.pregunta;
+		$scope.preguntaInput.file_pregunta.name = pregunta.file_pregunta;
 		$scope.preguntaInput.anio = pregunta.anio;
 		$scope.preguntaInput.grado = pregunta.grado;
 		$('#crearPreguntaModal').modal('show');
@@ -183,11 +184,11 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 				$scope.preguntas.push(value.pregunta);
 			});
 
-			if($scope.preguntas.length < 15) $('#dialog_error').addClass('open');
-			else {
+			// if($scope.preguntas.length < 15) $('#dialog_error').addClass('open');
+			// else {
 				$('#dialog_inicio').addClass('open');
 				elegirPregunta();
-			}
+			// }
 		});
 	}, 10);
 

@@ -85,9 +85,14 @@ class AdminController extends Controller
         }
         else $anio = $res['anio'];
 
-        $pregunta->fill($res);
-        if($file = $request->file('file_pregunta')) return $file->getClientOriginalName();
+        if(isset($res['pregunta'])) $pregunta->pregunta = $res['pregunta'];
         $pregunta->save();
+        if($file = $request->file('file_pregunta')) {
+            $ext = $file->getClientOriginalExtension();
+            $pregunta->file_pregunta = 'pregunta_'.$pregunta->id.'.'.$ext;
+            \Storage::disk('preguntas')->put($pregunta->file_pregunta, \File::get($file));
+            $pregunta->save();
+        }
 
         foreach ($res['respuestas'] as $key => $value) {
             $respuestas[$key]->respuesta = $value->respuesta;
@@ -108,10 +113,17 @@ class AdminController extends Controller
     }
 
     public function deleteEliminarPregunta($id) {
-        Pregunta::destroy($id);
+        $p = Pregunta::find($id);
+        \Storage::disk('preguntas')->delete(
+            $p->file_pregunta);
+        $p->delete();
 
         return ['title'=>'Exito',
                 'text'=>'La pregunta ha sido eliminada con exito',
                 'icon'=>'success'];
+    }
+
+    public function getArchivoPregunta($name) {
+        return response()->download(storage_path('app/preguntas/'.$name));
     }
 }

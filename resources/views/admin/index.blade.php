@@ -43,12 +43,18 @@
 				<th></th>
 			</thead>
 			<tbody ng-repeat="pregunta in preguntas | filter:filtro:strict">
-				<td>@{{pregunta.pregunta.pregunta}}</td>
+				<td>
+					@{{pregunta.pregunta.pregunta}}
+					<span ng-if="pregunta.pregunta.file_pregunta">
+						: @{{pregunta.pregunta.file_pregunta}}
+					</span>
+				</td>
 				<td ng-repeat="respuesta in pregunta.pregunta.respuestas" ng-class="{'text-success':respuesta.respuesta_correcta,'font-weight-bold':respuesta.respuesta_correcta}">
 					@{{respuesta.respuesta}}
 				</td>
 				<td>
-					<button class="btn btn-light" ng-click="editarPregunta(pregunta)">Editar</button>
+					<button class="btn btn-light" ng-click="editarPregunta(pregunta)"
+							ng-if="!pregunta.pregunta.file_pregunta">Editar</button>
 					<button class="btn btn-link text-danger" ng-click="eliminarPregunta(pregunta)">Eliminar</button>
 				</td>
 			</tbody>

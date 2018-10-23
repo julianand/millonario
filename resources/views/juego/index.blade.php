@@ -14,6 +14,10 @@
 		.green {
 			color: green;
 		}
+
+		.text {
+			float: left;
+		}
 	</style>
 </head>
 
@@ -45,9 +49,15 @@
 	        
 	        <div class="playground">
 	        
-	            <p id="question">
-	            <span id="textoPregunta">@{{preguntaActual.pregunta}}</span>
-	            </p><!-- /.question -->
+	            <div id="question" style="overflow: hidden;">
+	            <span id="textoPregunta" style="width: 25%; text-align: center;"
+	            		ng-class="{text:preguntaActual.file_pregunta}">
+	            	@{{preguntaActual.pregunta}}
+	            </span>
+	            <div ng-if="preguntaActual.file_pregunta" style="width: 70%; float: right;">
+	            	<img src="{{Request::root()}}/admin/archivo-pregunta/@{{preguntaActual.file_pregunta}}" alt="pregunta" style="width: 100%; height: 100px;">
+	            </div>
+	            </div><!-- /.question -->
 	            
 	            <ul id="answers">
 	        
