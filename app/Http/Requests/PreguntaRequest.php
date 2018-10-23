@@ -28,14 +28,12 @@ class PreguntaRequest extends Request
             'anio'=>'required_without:anioNew',
             'anioNew'=>'required_without:anio|numeric|unique:anios,anio|min:2000',
             'grado'=>'required',
-            'respuestas'=>'required|min:4'
+            'file_pregunta'=>'mimes:jpeg,png,bmp',
         ];
     }
 
     public function messages() {
         return [
-            'respuestas.required'=>'Completa todos los campos',
-            'respuestas.min'=>'Completa todos los campos',
             'pregunta.required_without'=>'Requerido',
             'anio.required_without'=>'Requerido',
             'anioNew.required_without'=>' ',
@@ -43,6 +41,7 @@ class PreguntaRequest extends Request
             'anioNew.unique'=>'El año ya esta registrado',
             'anioNew.new'=>'El año debe ser mayor o igual a 2000',
             'grado.required'=>'Requerido',
+            'file_pregunta.mime'=>'Debe ser una imagen',
         ];
     }
 }

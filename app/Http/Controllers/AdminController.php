@@ -36,74 +36,75 @@ class AdminController extends Controller
         return $rp;
     }
 
-    public function postGuardarPregunt(Request $request) {
-        foreach ($request->all() as $key => $value) {
-            if($key != 'file_pregunta') $res[$key] = json_decode($value);
-            else $res[$key] = $value;
-        }
-        return $request->all();
-    }
-
     public function postGuardarPregunta(PreguntaRequest $request) {
-        return $request->all();
-        // return $request->file('file_pregunta')->getClientOriginalName();
-        if($request->id) {
-            if (!$request->anio) {
-                $anio = Anio::create(['anio'=>$request->anioNew]);
+        //obteniendo datos
+        foreach ($request->all() as $key => $value) {
+            $res[$key] = json_decode($value);
+        }
+
+        //validando
+        if(count($res['respuestas']) != 4) {
+            return ['icon'=>'error', 'respuestas'=>['Completa todos los campos']];
+        }
+
+        foreach ($res['respuestas'] as $key => $value) {
+            if(!isset($value->respuesta)) {
+                return ['icon'=>'error', 'respuestas'=>['Completa todos los campos']];
             }
-            else {
-                $anio = Anio::find($request->anio['id']);
-                $anio->fill($request->anio);
-                $anio->save();
+        }
+
+        //algoritmo
+        if(isset($res['id'])) {
+            $pregunta = Pregunta::find($res['id']);
+            foreach ($res['respuestas'] as $key => $value) {
+                $respuestas[$key] = Respuesta::find($value->id);
             }
 
-            RelacionPregunta::where('pregunta_id',$request->id)->delete();
-            $p = Pregunta::find($request->id);
-            $p->fill($request->all());
-            $p->save();
+            RelacionPregunta::where('pregunta_id', $res['id'])->delete();
 
-            foreach ($request->respuestas as $key => $value) {
-                $r = Respuesta::find($value['id']);
-                $r->fill($value);
-                $r->save();
-            }
-
-            $rp['anio_id'] = $anio['id'];
-            $rp['grado_id'] = $request->grado['id'];
-            $rp['pregunta_id'] = $p->id;
-            RelacionPregunta::create($rp);
-
-            $alert = ['title'=>'Exito',
-                      'text'=>'La pregunta ha sido actualizada con exito',
-                      'icon'=>'success'];
-
-            return $alert;
+            $alert = [
+                'title'=>'exito',
+                'text'=>'Pregunta actualizada con exito',
+                'icon'=>'success'
+            ];
         }
         else {
-            if (!$request->anio) {
-                $anio = Anio::create(['anio'=>$request->anioNew]);
-            }
-            else $anio = $request->anio;
-
-            $p = Pregunta::create($request->all());
-            $respuestas = $request->respuestas;
-            foreach ($respuestas as $key => $value) {
-                if($key == 0) $value['respuesta_correcta'] = 1;
-                else $value['respuesta_correcta'] = 0;
-
-                $value['pregunta_id'] = $p->id;
-                Respuesta::create($value);
+            $pregunta = new Pregunta();
+            foreach ($res['respuestas'] as $key => $value) {
+                $respuestas[$key] = new Respuesta();
             }
 
-            $rp['anio_id'] = $anio['id'];
-            $rp['grado_id'] = $request->grado['id'];
-            $rp['pregunta_id'] = $p->id;
-            RelacionPregunta::create($rp);
+            $alert = [
+                'title'=>'exito',
+                'text'=>'Pregunta creada con exito',
+                'icon'=>'success'
+            ];
+        }
+        if(!$res['anio']) {
+            $anio = Anio::create(['anio' => $res['anioNew']]);
+        }
+        else $anio = $res['anio'];
 
-            $alert = ['title'=>'Exito','text'=>'La pregunta ha sido creada con exito','icon'=>'success'];
+        $pregunta->fill($res);
+        if($file = $request->file('file_pregunta')) return $file->getClientOriginalName();
+        $pregunta->save();
 
-            return $alert;
-        } 
+        foreach ($res['respuestas'] as $key => $value) {
+            $respuestas[$key]->respuesta = $value->respuesta;
+            $respuestas[$key]->pregunta_id = $pregunta->id;
+            if($key == 0) $respuestas[$key]->respuesta_correcta = 1;
+            else $respuestas[$key]->respuesta_correcta = 0;
+
+            $respuestas[$key]->save();
+        }
+
+        RelacionPregunta::create([
+            'anio_id'=>$anio->id,
+            'grado_id'=>$res['grado']->id,
+            'pregunta_id'=>$pregunta->id
+        ]);
+
+        return $alert;
     }
 
     public function deleteEliminarPregunta($id) {

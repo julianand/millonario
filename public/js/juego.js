@@ -41,11 +41,11 @@ app.controller('adminController', ['$scope', '$http', '$timeout',  function($sco
 	}
 
 	$scope.guardarPregunta = function() {
-		console.log($scope.preguntaInput);
 		var data = new FormData();
 		angular.forEach($scope.preguntaInput, function(value, key) {
 			if(value) {
-				data.append(key, value);
+				if(key != 'file_pregunta') data.append(key, JSON.stringify(value));
+				else data.append(key, value);
 			}
 		});
 		var config = {
@@ -53,12 +53,17 @@ app.controller('adminController', ['$scope', '$http', '$timeout',  function($sco
 				'Content-Type': undefined
 			}
 		};
-		$http.post($scope.raiz+'/admin/guardar-pregunt', data, config).then(function(response) {
+		$http.post($scope.raiz+'/admin/guardar-pregunta', data, config).then(function(response) {
 			$scope.errors = null;
-			$('#crearPreguntaModal').modal('hide');
-			swal(response.data).then((value) => {
-				window.location.href = $scope.raiz+'/admin';
-			});
+			if(response.data.icon != 'error') {
+				$('#crearPreguntaModal').modal('hide');
+				swal(response.data).then((value) => {
+					window.location.href = $scope.raiz+'/admin';
+				});
+			}
+			else {
+				$scope.errors = response.data;
+			}	
 		}, function(response) {
 			$scope.errors = response.data;
 		});
