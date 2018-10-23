@@ -114,16 +114,13 @@ class AdminController extends Controller
 
     public function deleteEliminarPregunta($id) {
         $p = Pregunta::find($id);
-        \Storage::disk('preguntas')->delete(
-            $p->file_pregunta);
+        if($p->file_input) {
+            \Storage::disk('preguntas')->delete($p->file_pregunta);
+        }
         $p->delete();
 
         return ['title'=>'Exito',
                 'text'=>'La pregunta ha sido eliminada con exito',
                 'icon'=>'success'];
-    }
-
-    public function getArchivoPregunta($name) {
-        return response()->download(storage_path('app/preguntas/'.$name));
     }
 }

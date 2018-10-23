@@ -39,4 +39,8 @@ class JuegoController extends Controller
 
 		return $rp;	
     }
+
+    public function getArchivoPregunta($name) {
+        return response()->download(storage_path('app/preguntas/'.$name));
+    }
 }

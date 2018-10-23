@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-10-2018 a las 23:39:48
--- Versión del servidor: 10.1.21-MariaDB
--- Versión de PHP: 5.6.30
+-- Tiempo de generación: 23-10-2018 a las 19:53:21
+-- Versión del servidor: 10.1.35-MariaDB
+-- Versión de PHP: 7.2.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -77,29 +79,30 @@ INSERT INTO `grados` (`id`, `grado`) VALUES
 
 CREATE TABLE `preguntas` (
   `id` int(11) NOT NULL,
-  `pregunta` varchar(100) NOT NULL
+  `pregunta` varchar(100) NOT NULL,
+  `file_pregunta` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `preguntas`
 --
 
-INSERT INTO `preguntas` (`id`, `pregunta`) VALUES
-(1, '¿Cuanto es 2+3*2?'),
-(2, 'El alba es...'),
-(3, 'Warning en español significa...'),
-(4, '¿Quien descubrió América?'),
-(17, '¿Cuantas notas tiene una escala cromatica?'),
-(18, 'La niña, la pinta y la...'),
-(19, 'El simbolo quimico \"Na\" representa...'),
-(22, 'Bon Scott fue vocalista de la banda...'),
-(23, '¿Cual es el 6to planeta en el sistema solar?'),
-(24, 'Banda famosa por ser iconica en los 70\'s y 80\'s...'),
-(25, 'Descubrio la gravedad...'),
-(26, 'Estructura repetitiva que primero evalua y despues repite.'),
-(27, '¿Cual de los siguientes archivos no es de audio?'),
-(28, 'Año de fundacion de Windows 7'),
-(29, '¿Cual es el dia de independencia de colombia?');
+INSERT INTO `preguntas` (`id`, `pregunta`, `file_pregunta`) VALUES
+(1, '¿Cuanto es 2+3*2?', NULL),
+(2, 'El alba es...', NULL),
+(3, 'Warning en español significa...', NULL),
+(4, '¿Quien descubrió América?', NULL),
+(17, '¿Cuantas notas tiene una escala cromatica?', NULL),
+(18, 'La niña, la pinta y la...', NULL),
+(19, 'El simbolo quimico \"Na\" representa...', NULL),
+(22, 'Bon Scott fue vocalista de la banda...', NULL),
+(23, '¿Cual es el 6to planeta en el sistema solar?', NULL),
+(24, 'Banda famosa por ser iconica en los 70\'s y 80\'s...', NULL),
+(25, 'Descubrio la gravedad...', NULL),
+(26, 'Estructura repetitiva que primero evalua y despues repite.', NULL),
+(27, '¿Cual de los siguientes archivos no es de audio?', NULL),
+(28, 'Año de fundacion de Windows 7', NULL),
+(29, '¿Cual es el dia de independencia de colombia?', NULL);
 
 -- --------------------------------------------------------
 
@@ -152,7 +155,7 @@ CREATE TABLE `respuestas` (
 --
 
 INSERT INTO `respuestas` (`id`, `respuesta`, `respuesta_correcta`, `pregunta_id`) VALUES
-(1, '5', 0, 1),
+(1, '6', 0, 1),
 (2, '8', 1, 1),
 (3, '10', 0, 1),
 (4, '9', 0, 1),
@@ -260,22 +263,26 @@ ALTER TABLE `respuestas`
 -- AUTO_INCREMENT de la tabla `anios`
 --
 ALTER TABLE `anios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- AUTO_INCREMENT de la tabla `grados`
 --
 ALTER TABLE `grados`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
 --
 -- AUTO_INCREMENT de la tabla `preguntas`
 --
 ALTER TABLE `preguntas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=129;
+
 --
 -- Restricciones para tablas volcadas
 --
@@ -293,6 +300,7 @@ ALTER TABLE `relaciones_preguntas`
 --
 ALTER TABLE `respuestas`
   ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`pregunta_id`) REFERENCES `preguntas` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

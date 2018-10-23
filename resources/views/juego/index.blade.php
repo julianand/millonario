@@ -16,6 +16,7 @@
 		}
 
 		.text {
+			width: 28%;
 			float: left;
 		}
 	</style>
@@ -50,12 +51,12 @@
 	        <div class="playground">
 	        
 	            <div id="question" style="overflow: hidden;">
-	            <span id="textoPregunta" style="width: 25%; text-align: center;"
+	            <span id="textoPregunta" style="text-align: center;"
 	            		ng-class="{text:preguntaActual.file_pregunta}">
 	            	@{{preguntaActual.pregunta}}
 	            </span>
 	            <div ng-if="preguntaActual.file_pregunta" style="width: 70%; float: right;">
-	            	<img src="{{Request::root()}}/admin/archivo-pregunta/@{{preguntaActual.file_pregunta}}" alt="pregunta" style="width: 100%; height: 100px;">
+	            	<img src="{{Request::root()}}/juego/archivo-pregunta/@{{preguntaActual.file_pregunta}}" alt="pregunta" style="max-width: 100%; height: 100px;">
 	            </div>
 	            </div><!-- /.question -->
 	            
