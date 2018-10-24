@@ -13,11 +13,11 @@
 
 Route::get('/', function() {
 	return view('index');
-});
+})->middleware('https');
 
-Route::controller('juego','JuegoController');
-route::controller('admin','AdminController');
+Route::controller('juego','JuegoController')->middleware('https');
+route::controller('admin','AdminController')->middleware('https');
 
 Route::get('/{anio}/{grado}', function ($anio, $grado) {
     return view('juego.index', ['anio'=>$anio, 'grado'=>$grado]);
-});
+})->middleware('https');
