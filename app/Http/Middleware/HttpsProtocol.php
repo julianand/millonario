@@ -15,7 +15,7 @@ class HttpsProtocol
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->secure() && \App::environment('production')) {
+        if (!$request->secure() && \App::environment() === 'production') {
             return 1;
             return redirect()->secure($request->getRequestUri());
         }
