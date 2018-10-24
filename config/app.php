@@ -29,7 +29,7 @@ return [
     */
 
     // 'url' => 'http://localhost',
-    'url' => 'https://millonarioapp.herokuapp.com';
+    'url' => 'https://millonarioapp.herokuapp.com',
 
     /*
     |--------------------------------------------------------------------------
