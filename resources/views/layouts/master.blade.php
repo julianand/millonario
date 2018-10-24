@@ -11,7 +11,7 @@
 
     <title>@yield('title')</title>
   </head>
-  <body @yield('controller') ng-init="raiz='{{Request::root()}}'">
+  <body @yield('controller') ng-init="raiz=''">
     @yield('content')
 
     <!-- Optional JavaScript -->
