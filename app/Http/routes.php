@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function() {
-	return view('index', ['asd'=>env('APP_ENV')]);
+	return view('index', ['env'=>App::environment()]);
 });
 
 Route::controller('juego','JuegoController');

@@ -7,7 +7,6 @@
 	<h1 class="ml-3">QUIEN QUIERE SER MILLONARIO</h1>
 </div>
 <section class="container pt-2">
-	{{$asd}}
 	<p class="font-weight-bold">
 		Ingrese año y grado para empezar a jugar:
 	</p>
@@ -28,7 +27,7 @@
 				<span class="text-danger">@{{errors.grado[0]}}</span>
 			</div>
 			<div class="col-sm-2 align-self-center">
-				<button class="btn btn-light btn-block" ng-click="juego()">Ir al juegoo</button>
+				<button class="btn btn-light btn-block" ng-click="juego()">Ir al juego</button>
 			</div>
 		</div>
 	</form>
