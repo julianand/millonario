@@ -23,7 +23,8 @@
 	</style>
 </head>
 
-<body ng-controller="juegoController" ng-init="anio='{{$anio}}'; grado='{{$grado}}'; raiz='{{Request::root()}}'">
+{{-- <body ng-controller="juegoController" ng-init="anio='{{$anio}}'; grado='{{$grado}}'; raiz='{{Request::root()}}'"> --}}
+<body ng-controller="juegoController" ng-init="anio='{{$anio}}'; grado='{{$grado}}'; raiz='https://millonarioapp.herokuapp.com'">
 
 	<div class="game-wrapper">
 
