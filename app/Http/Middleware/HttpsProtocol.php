@@ -16,9 +16,9 @@ class HttpsProtocol
     public function handle($request, Closure $next)
     {
         if (!$request->secure() && \App::environment() === 'production') {
-            $request->setTrustedProxies( [ $request->getClientIp() ] ); 
-            // return redirect()->secure($request->getRequestUri());
-            return redirect()->secure($request->url());
+            \Request::setTrustedProxies( [ $request->getClientIp() ] ); 
+            return redirect()->secure($request->getRequestUri());
+            // return redirect()->secure($request->url());
         }
         return $next($request);
     }
