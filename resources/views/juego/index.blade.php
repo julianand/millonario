@@ -58,7 +58,7 @@
 	            	@{{preguntaActual.pregunta}}
 	            </span>
 	            <div ng-if="preguntaActual.file_pregunta" style="width: 70%; float: right;">
-	            	<img src="{{Request::root()}}/juego/archivo-pregunta/@{{preguntaActual.file_pregunta}}" alt="pregunta" style="max-width: 100%; height: 100px;">
+	            	<img src="https://millonarioapp.herokuapp.com/juego/archivo-pregunta/@{{preguntaActual.file_pregunta}}" alt="pregunta" style="max-width: 100%; height: 100px;">
 	            </div>
 	            </div><!-- /.question -->
 	            
