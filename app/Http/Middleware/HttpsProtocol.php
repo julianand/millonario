@@ -17,7 +17,7 @@ class HttpsProtocol
     {
         if (!app()->environment('local')) {
             // for Proxies
-            Request::setTrustedProxies([$request->getClientIp()]);
+            \Request::setTrustedProxies([$request->getClientIp()]);
 
             if (!$request->isSecure()) {
                 return redirect()->secure($request->getRequestUri());
