@@ -28,8 +28,8 @@ return [
     |
     */
 
-    // 'url' => 'http://localhost',
-    'url' => 'https://millonarioapp.herokuapp.com',
+    'url' => 'http://localhost',
+    // 'url' => 'https://millonarioapp.herokuapp.com',
 
     /*
     |--------------------------------------------------------------------------
