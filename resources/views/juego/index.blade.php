@@ -181,7 +181,7 @@
 				</td>
 			</tbody>
 		</table>
-	    <a href="{{Request::url()}}"class="close" style="position: absolute; top: 59px; left: 465px;">Nuevo juego</a>
+	    <a href="https://millonarioapp.herokuapp.com/{{$anio}}/{{$grado}}"class="close" style="position: absolute; top: 59px; left: 465px;">Nuevo juego</a>
 	</div>
 	
 	<!-- Incorrecta -->
@@ -230,7 +230,7 @@
 				</tbody>
 			</table>
 	    </div>
-	    <a href="{{Request::url()}}" class="close">Nuevo juego</a>
+	    <a href="https://millonarioapp.herokuapp.com/{{$anio}}/{{$grado}}" class="close">Nuevo juego</a>
 	</div>
 
 	<!-- Mask to cover the whole screen -->
