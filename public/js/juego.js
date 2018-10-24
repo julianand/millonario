@@ -89,7 +89,7 @@ app.controller('adminController', ['$scope', '$http', '$timeout',  function($sco
 
 	$scope.editarPregunta = function(pregunta) {
 		$scope.preguntaInput = pregunta.pregunta;
-		$scope.preguntaInput.file_pregunta.name = pregunta.file_pregunta;
+		// $scope.preguntaInput.file_pregunta.name = pregunta.file_pregunta;
 		$scope.preguntaInput.anio = pregunta.anio;
 		$scope.preguntaInput.grado = pregunta.grado;
 		$('#crearPreguntaModal').modal('show');
