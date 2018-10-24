@@ -2,7 +2,8 @@
 <html ng-app="app">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<link rel="stylesheet" href="{{asset('css/QQM.css')}}" type="text/css" />
+	{{-- <link rel="stylesheet" href="{{asset('css/QQM.css')}}" type="text/css" /> --}}
+	<link rel="stylesheet" href="{{secure_asset('css/QQM.css')}}" type="text/css" />
 
 	<title>QUIEN QUIERE SER MillONARIO</title>
 
@@ -234,13 +235,18 @@
 	<!-- Mask to cover the whole screen -->
 	<div id="mask" class="open"></div>
 
-	<script type="text/javascript" language="JavaScript" src="{{asset('js/jquery-1.4.4.min.js')}}"></script>
-	<script type="text/javascript" language="JavaScript" src="{{asset('js/pubsub.js')}}"></script>
-	<script type="text/javascript" language="JavaScript" src="{{asset('js/json2.js')}}"></script>
-	<script type="text/javascript" language="JavaScript" src="{{asset('js/jquery.store.js')}}"></script>
+	{{-- <script type="text/javascript" language="JavaScript" src="{{asset('js/jquery-1.4.4.min.js')}}"></script> --}}
+	<script type="text/javascript" language="JavaScript" src="{{secure_asset('js/jquery-1.4.4.min.js')}}"></script>
+	{{-- <script type="text/javascript" language="JavaScript" src="{{asset('js/pubsub.js')}}"></script> --}}
+	<script type="text/javascript" language="JavaScript" src="{{secure_asset('js/pubsub.js')}}"></script>
+	{{-- <script type="text/javascript" language="JavaScript" src="{{asset('js/json2.js')}}"></script> --}}
+	<script type="text/javascript" language="JavaScript" src="{{secure_asset('js/json2.js')}}"></script>
+	{{-- <script type="text/javascript" language="JavaScript" src="{{asset('js/jquery.store.js')}}"></script> --}}
+	<script type="text/javascript" language="JavaScript" src="{{secure_asset('js/jquery.store.js')}}"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.4/angular.min.js"></script>
-	<script type="text/javascript" src="{{asset('js/juego.js')}}"></script>
-	<!-- <script type="text/javascript" language="JavaScript" src="{{asset('js/qqss.js')}}"></script> -->
+	{{-- <script type="text/javascript" src="{{asset('js/juego.js')}}"></script> --}}
+	<script type="text/javascript" src="{{secure_asset('js/juego.js')}}"></script>
+	{{-- <script type="text/javascript" language="JavaScript" src="{{asset('js/qqss.js')}}"></script> --}}
 	</script>
 
 </body>
