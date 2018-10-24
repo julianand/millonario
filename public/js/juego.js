@@ -184,11 +184,11 @@ app.controller('juegoController', ['$scope','$http', '$timeout', function($scope
 				$scope.preguntas.push(value.pregunta);
 			});
 
-			if($scope.preguntas.length < 15) $('#dialog_error').addClass('open');
-			else {
+			// if($scope.preguntas.length < 15) $('#dialog_error').addClass('open');
+			// else {
 				$('#dialog_inicio').addClass('open');
 				elegirPregunta();
-			}
+			// }
 		});
 	}, 10);
 
