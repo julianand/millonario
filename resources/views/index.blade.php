@@ -7,6 +7,7 @@
 	<h1 class="ml-3">QUIEN QUIERE SER MILLONARIO</h1>
 </div>
 <section class="container pt-2">
+	{{$asd}}
 	<p class="font-weight-bold">
 		Ingrese año y grado para empezar a jugar:
 	</p>
