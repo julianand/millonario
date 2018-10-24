@@ -13,7 +13,7 @@
     <title>@yield('title')</title>
   </head>
   {{-- <body @yield('controller') ng-init="raiz='{{Request::root()}}'"> --}}
-  <body @yield('controller') ng-init="raiz='https://millonarioapp.herokuapp.com/'">
+  <body @yield('controller') ng-init="raiz='https://millonarioapp.herokuapp.com'">
     @yield('content')
 
     <!-- Optional JavaScript -->
