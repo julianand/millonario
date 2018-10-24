@@ -27,7 +27,7 @@
 				<span class="text-danger">@{{errors.grado[0]}}</span>
 			</div>
 			<div class="col-sm-2 align-self-center">
-				<button class="btn btn-light btn-block" ng-click="juego()">Ir al juego</button>
+				<button class="btn btn-light btn-block" ng-click="juego()">Ir al juegoo</button>
 			</div>
 		</div>
 	</form>
