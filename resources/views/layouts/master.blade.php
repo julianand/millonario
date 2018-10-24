@@ -7,11 +7,13 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('css/style.css')}}"> --}}
+    <link rel="stylesheet" href="{{secure_asset('css/style.css')}}">
 
     <title>@yield('title')</title>
   </head>
-  <body @yield('controller') ng-init="raiz='{{Request::root()}}'">
+  {{-- <body @yield('controller') ng-init="raiz='{{Request::root()}}'"> --}}
+  <body @yield('controller') ng-init="raiz='https://millonarioapp.herokuapp.com/'">
     @yield('content')
 
     <!-- Optional JavaScript -->
@@ -21,6 +23,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
-    <script type="text/javascript" src="{{asset('js/juego.js')}}"></script>
+    {{-- <script type="text/javascript" src="{{asset('js/juego.js')}}"></script> --}}
+    <script type="text/javascript" src="{{secure_asset('js/juego.js')}}"></script>
   </body>
 </html>
