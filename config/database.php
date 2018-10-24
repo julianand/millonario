@@ -54,7 +54,7 @@ return [
 
         'mysql' => [
             'driver'    => 'mysql',
-            'host'      => env('DB_HOST', 'localhost'),
+            'host'      => env('DB_HOST', 'db4free.net'),
             'database'  => env('DB_DATABASE', 'millonario'),
             'username'  => env('DB_USERNAME', 'julianpitre'),
             'password'  => env('DB_PASSWORD', '12345678'),
